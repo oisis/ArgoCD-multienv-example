@@ -11,7 +11,7 @@ spec:
   - matrix:
       generators:
       - git:
-          repoURL: https://gitlab.com/PrzygotowaniaDoZmianyPracy/trainings/argocd/apps.git
+          repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           revision: HEAD
           files:
             - path: environments/sit/argocd/appconfig.yaml
@@ -25,7 +25,7 @@ spec:
     spec:
       project: '{{.project}}'
       sources:
-        - repoURL: https://gitlab.com/PrzygotowaniaDoZmianyPracy/trainings/argocd/apps.git
+        - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           targetRevision: HEAD
           ref: values
         - chart: '{{.chart}}'
@@ -36,12 +36,12 @@ spec:
             valueFiles:
               - $values/apps/{{.name}}/values.yaml
               - $values/environments/sit/{{.name}}/values.yaml
-        - repoURL: https://gitlab.com/PrzygotowaniaDoZmianyPracy/trainings/argocd/apps.git
+        - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           targetRevision: HEAD
           path: apps/{{.name}}/manifests
           directory:
             recurse: true
-        - repoURL: https://gitlab.com/PrzygotowaniaDoZmianyPracy/trainings/argocd/apps.git
+        - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           targetRevision: HEAD
           path: environments/sit/{{.name}}/manifests
           directory:

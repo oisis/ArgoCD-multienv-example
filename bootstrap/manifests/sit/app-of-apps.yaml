@@ -14,7 +14,7 @@ spec:
           repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           revision: HEAD
           files:
-            - path: environments/sit/argocd/appconfig.yaml
+            - path: envs/sit/env-config.yaml
       - list:
           elementsYaml: "{{ .appconfig | toJson }}"
   template:
@@ -35,7 +35,7 @@ spec:
             ignoreMissingValueFiles: true
             valueFiles:
               - $values/apps/{{.name}}/values.yaml
-              - $values/environments/sit/{{.name}}/values.yaml
+              - $values/envs/sit/{{.name}}/values.yaml
         - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           targetRevision: HEAD
           path: apps/{{.name}}/manifests
@@ -43,7 +43,7 @@ spec:
             recurse: true
         - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           targetRevision: HEAD
-          path: environments/sit/{{.name}}/manifests
+          path: envs/sit/{{.name}}/manifests
           directory:
             recurse: true
       destination:

@@ -1,0 +1,3 @@
+global:
+  logLevel: 3
+replicaCount: 1

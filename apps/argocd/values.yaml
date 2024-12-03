@@ -1,0 +1,36 @@
+crds:
+  install: true
+  keep: true
+global:
+  logging:
+    format: text
+    level: info
+redis-ha:
+  enabled: false
+controller:
+  replicas: 1
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+applicationSet:
+  replicas: 1
+certificate:
+  enabled: true
+server:
+  service:
+    type: LoadBalancer
+  ingress:
+    enabled: false
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+configs:
+  cm:
+    create: true
+    exec.enabled: true
+    server.insecure: true
+    admin.enabled: true
+    statusbadge.enabled: true
+  params:
+    server.insecure: true

@@ -1,0 +1,7 @@
+configs:
+  cm:
+    create: true
+    exec.enabled: true
+    server.insecure: true
+    admin.enabled: true
+    statusbadge.enabled: true

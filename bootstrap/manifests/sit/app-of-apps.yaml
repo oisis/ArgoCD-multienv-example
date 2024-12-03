@@ -1,0 +1,61 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-of-apps
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - matrix:
+      generators:
+      - git:
+          repoURL: https://gitlab.com/PrzygotowaniaDoZmianyPracy/trainings/argocd/apps.git
+          revision: HEAD
+          files:
+            - path: environments/sit/argocd/appconfig.yaml
+      - list:
+          elementsYaml: "{{ .appconfig | toJson }}"
+  template:
+    metadata:
+      name: '{{.name}}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: '{{.project}}'
+      sources:
+        - repoURL: https://gitlab.com/PrzygotowaniaDoZmianyPracy/trainings/argocd/apps.git
+          targetRevision: HEAD
+          ref: values
+        - chart: '{{.chart}}'
+          repoURL: '{{.repoUrl}}'
+          targetRevision: '{{.targetRevision}}'
+          helm:
+            ignoreMissingValueFiles: true
+            valueFiles:
+              - $values/apps/{{.name}}/values.yaml
+              - $values/environments/sit/{{.name}}/values.yaml
+        - repoURL: https://gitlab.com/PrzygotowaniaDoZmianyPracy/trainings/argocd/apps.git
+          targetRevision: HEAD
+          path: apps/{{.name}}/manifests
+          directory:
+            recurse: true
+        - repoURL: https://gitlab.com/PrzygotowaniaDoZmianyPracy/trainings/argocd/apps.git
+          targetRevision: HEAD
+          path: environments/sit/{{.name}}/manifests
+          directory:
+            recurse: true
+      destination:
+        name: sit
+        namespace: "{{.namespace}}"
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
+          allowEmpty: true
+        syncOptions:
+          - Validate=true
+          - CreateNamespace=true
+          - PrunePropagationPolicy=foreground
+          - PruneLast=true

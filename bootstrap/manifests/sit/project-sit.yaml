@@ -9,8 +9,8 @@ metadata:
 spec:
   description: "Project for SIT cluster"
   clusterResourceWhitelist:
-  - group: ''
-    kind: ''
+  - group: '*'
+    kind: '*'
   destinations:
   - name: sit
     namespace: '*'

@@ -13,7 +13,7 @@ appconfig:
     targetRevision: "1.16.2"
   - name: "metrics-server"
     namespace: "metrics-server"
-    project: "core-tools"
+    project: "dev"
     repoUrl: "https://kubernetes-sigs.github.io/metrics-server/"
     chart: metrics-server
     targetRevision: "3.12.2"

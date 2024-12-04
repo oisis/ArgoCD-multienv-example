@@ -9,3 +9,6 @@ configs:
     server.insecure: true
     admin.enabled: true
     statusbadge.enabled: true
+server:
+  service:
+    type: ClusterIP

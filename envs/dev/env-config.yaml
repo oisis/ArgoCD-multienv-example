@@ -9,5 +9,11 @@ appconfig:
     namespace: "cert-manager"
     project: "dev"
     repoUrl: "https://charts.jetstack.io"
-    chart: cert-manager
+    chart: "cert-manager"
     targetRevision: "1.16.2"
+  - name: "metrics-server"
+    namespace: "metrics-server"
+    project: "core-tools"
+    repoUrl: "https://kubernetes-sigs.github.io/metrics-server/"
+    chart: metrics-server
+    targetRevision: "3.12.2"

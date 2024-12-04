@@ -1,3 +1,7 @@
+global:
+  domain: localhost:8080
+  additionalLabels:
+    environment: dev
 configs:
   cm:
     create: true

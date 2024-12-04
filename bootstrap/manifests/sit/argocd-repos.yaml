@@ -8,7 +8,7 @@ metadata:
     argocd.argoproj.io/secret-type: repo-creds
 stringData:
   type: git
-  url: https://github.com/oisis/ArgoCD-example.git
+  url: https://github.com/oisis/ArgoCD-multienv-example.git
   username: oisis
   # TODO: Update token here
   password: ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

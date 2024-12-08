@@ -1,0 +1,53 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: k8s-manifest-aoa
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - matrix:
+      generators:
+      - git:
+          repoURL: https://gitlab.com/PrzygotowaniaDoZmianyPracy/trainings/argocd/apps.git
+          revision: HEAD
+          files:
+            - path: environments/dev/k8s-manifest-apps.yaml
+      - list:
+          elementsYaml: "{{ .appconfig | toJson }}"
+  template:
+    metadata:
+      name: '{{.name}}'
+      namespace: '{{.namespace}}'
+      labels:
+        custom.label/deployed-by: "k8s-manifests-aoa"
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: 'dev'
+      sources:
+        - repoURL: https://gitlab.com/PrzygotowaniaDoZmianyPracy/trainings/argocd/apps.git
+          targetRevision: HEAD
+          path: apps/{{.config_dir}}
+          directory:
+            recurse: true
+        - repoURL: https://gitlab.com/PrzygotowaniaDoZmianyPracy/trainings/argocd/apps.git
+          targetRevision: HEAD
+          path: environments/dev/{{.config_dir}}
+          directory:
+            recurse: true
+      destination:
+        name: dev
+        namespace: "{{.namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: false
+          allowEmpty: true
+        syncOptions:
+          - Validate=true
+          - CreateNamespace=true
+          - PrunePropagationPolicy=foreground
+          - PruneLast=true

@@ -34,8 +34,3 @@ configs:
     statusbadge.enabled: true
   params:
     server.insecure: true
-  repositories:
-    github-oisis-argocd-multienv-example:
-      url: https://github.com/oisis/ArgoCD-multienv-example.git
-      name: ArgoCD-multienv-example
-      type: git

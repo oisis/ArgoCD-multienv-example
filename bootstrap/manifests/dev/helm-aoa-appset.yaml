@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: app-of-apps
+  name: helm-aoa
   namespace: argocd
 spec:
   goTemplate: true
@@ -14,7 +14,7 @@ spec:
           repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           revision: HEAD
           files:
-            - path: envs/dev/env-config.yaml
+            - path: envs/dev/helm-apps.yaml
       - list:
           elementsYaml: "{{ .appconfig | toJson }}"
   template:

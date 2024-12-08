@@ -7,6 +7,9 @@ NC='\033[0m'
 printf "${GREEN}Add ArgoCD Helm repo${NC}\n"
 helm repo add argocd https://argoproj.github.io/argo-helm
 
+print "${GREEN} Update Helm local repos cache${NC}\n"
+helm repo update
+
 ###########
 # Cluster-1
 ###########
@@ -17,7 +20,7 @@ minikube start --driver=docker \
   -p cluster-1
 
 printf "${GREEN}Install ArgoCD with Helm${NC}\n"
-helm install argocd argocd/argo-cd --version 7.7.6 \
+helm install argocd argocd/argo-cd --version 7.7.7 \
   -f ./bootstrap/helm/argocd-values.yaml \
   --create-namespace \
   -n argocd

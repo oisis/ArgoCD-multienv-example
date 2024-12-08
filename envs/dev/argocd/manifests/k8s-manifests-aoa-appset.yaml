@@ -14,7 +14,7 @@ spec:
           repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           revision: HEAD
           files:
-            - path: environments/dev/k8s-manifest-apps.yaml
+            - path: envs/dev/k8s-manifest-apps.yaml
       - list:
           elementsYaml: "{{ .appconfig | toJson }}"
   template:
@@ -35,7 +35,7 @@ spec:
             recurse: true
         - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           targetRevision: HEAD
-          path: environments/dev/{{.config_dir}}
+          path: envs/dev/{{.config_dir}}
           directory:
             recurse: true
       destination:

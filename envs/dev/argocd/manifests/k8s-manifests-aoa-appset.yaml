@@ -40,6 +40,9 @@ spec:
       destination:
         name: dev
         namespace: "{{.namespace}}"
+      info:
+        - name: 'Applicatation url:'
+          value: "https://{{.name}}.dev.example.com"
       syncPolicy:
         automated:
           prune: true

@@ -51,6 +51,9 @@ spec:
       destination:
         name: sit
         namespace: "{{.namespace}}"
+      info:
+        - name: 'Applicatation url:'
+          value: "https://{{.name}}.sit.example.com"
       syncPolicy:
         automated:
           prune: false

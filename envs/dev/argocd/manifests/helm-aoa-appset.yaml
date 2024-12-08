@@ -1,0 +1,61 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: helm-aoa
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - matrix:
+      generators:
+      - git:
+          repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
+          revision: HEAD
+          files:
+            - path: envs/dev/helm-apps.yaml
+      - list:
+          elementsYaml: "{{ .appconfig | toJson }}"
+  template:
+    metadata:
+      name: '{{.name}}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: '{{.project}}'
+      sources:
+        - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
+          targetRevision: HEAD
+          ref: values
+        - chart: '{{.chart}}'
+          repoURL: '{{.repoUrl}}'
+          targetRevision: '{{.targetRevision}}'
+          helm:
+            ignoreMissingValueFiles: true
+            valueFiles:
+              - $values/apps/{{.name}}/values.yaml
+              - $values/envs/dev/{{.name}}/values.yaml
+        - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
+          targetRevision: HEAD
+          path: apps/{{.name}}/manifests
+          directory:
+            recurse: true
+        - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
+          targetRevision: HEAD
+          path: envs/dev/{{.name}}/manifests
+          directory:
+            recurse: true
+      destination:
+        name: dev
+        namespace: "{{.namespace}}"
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
+          allowEmpty: true
+        syncOptions:
+          - Validate=true
+          - CreateNamespace=true
+          - PrunePropagationPolicy=foreground
+          - PruneLast=true

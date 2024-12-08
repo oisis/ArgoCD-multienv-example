@@ -19,7 +19,7 @@ certificate:
   enabled: true
 server:
   service:
-    type: LoadBalancer
+    type: ClusterIP
   ingress:
     enabled: false
   autoscaling:

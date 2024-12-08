@@ -20,7 +20,6 @@ spec:
   template:
     metadata:
       name: '{{.name}}'
-      namespace: '{{.namespace}}'
       labels:
         custom.label/deployed-by: "k8s-manifests-aoa"
       finalizers:

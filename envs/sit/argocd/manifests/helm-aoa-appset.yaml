@@ -20,6 +20,8 @@ spec:
   template:
     metadata:
       name: '{{.name}}'
+      labels:
+        custom.label/deployed-by: "helm-aoa"
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:

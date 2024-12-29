@@ -56,8 +56,8 @@ spec:
           value: "http://{{.name}}.sit.example.com"
       syncPolicy:
         automated:
-          prune: false
-          selfHeal: false
+          prune: true
+          selfHeal: true
           allowEmpty: true
         syncOptions:
           - Validate=true

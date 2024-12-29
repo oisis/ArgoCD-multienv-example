@@ -8,24 +8,37 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  - matrix:
-      generators:
-      - git:
-          repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
-          revision: HEAD
-          files:
-            - path: envs/dev/apps-config.yaml
-      - list:
-          elementsYaml: "{{ .k8s_manifest_apps | toJson }}"
+    - matrix:
+        generators:
+          - matrix:
+              generators:
+                - git:
+                    repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
+                    revision: HEAD
+                    files:
+                      - path: envs/dev/apps-config.yaml
+                - list:
+                    elementsYaml: "{{ .k8s_manifest_apps | toJson }}"
+          - matrix:
+              generators:
+                - git:
+                    repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
+                    revision: HEAD
+                    files:
+                      - path: envs/dev/apps-config.yaml
+                - list:
+                    elementsYaml: "{{ .common_params | toJson }}"
   template:
     metadata:
       name: '{{.name}}'
       labels:
         custom.label/deployed-by: "k8s-manifests-aoa"
+        custom.label/env-domian: "{{.domain}}"
+        custom.label/environment: "{{.environment}}"
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
-      project: 'dev'
+      project: '{{.project}}'
       sources:
         - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           targetRevision: HEAD
@@ -42,7 +55,7 @@ spec:
         namespace: "{{.namespace}}"
       info:
         - name: 'Applicatation url:'
-          value: "http://{{.name}}.dev.example.com"
+          value: "http://{{.name}}.{{.domain}}"
       syncPolicy:
         automated:
           prune: true

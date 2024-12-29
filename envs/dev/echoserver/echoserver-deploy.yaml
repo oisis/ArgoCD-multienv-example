@@ -3,6 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: echoserver
+  labels:
+    app: echoserver
 spec:
   replicas: 1
   selector:
@@ -12,3 +14,9 @@ spec:
     metadata:
       labels:
         app: echoserver
+    spec:
+      containers:
+      - name: echoserver
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80

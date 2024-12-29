@@ -20,7 +20,7 @@ minikube start --driver=docker \
   -p cluster-1
 
 printf "${GREEN}Install ArgoCD with Helm${NC}\n"
-helm install argocd argocd/argo-cd --version 7.7.7 \
+helm install argocd argocd/argo-cd --version 7.7.11 \
   -f ./bootstrap/helm/argocd-values.yaml \
   --create-namespace \
   -n argocd

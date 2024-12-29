@@ -42,7 +42,7 @@ spec:
         namespace: "{{.namespace}}"
       info:
         - name: 'Applicatation url:'
-          value: "https://{{.name}}.dev.example.com"
+          value: "http://{{.name}}.dev.example.com"
       syncPolicy:
         automated:
           prune: true

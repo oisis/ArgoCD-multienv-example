@@ -1,4 +1,0 @@
-appconfig:
-  - name: "echoserver"
-    namespace: "echoserver"
-    config_dir: "echoserver"

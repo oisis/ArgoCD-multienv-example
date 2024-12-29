@@ -14,9 +14,9 @@ spec:
           repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           revision: HEAD
           files:
-            - path: envs/sit/helm-apps.yaml
+            - path: envs/sit/apps-config.yaml
       - list:
-          elementsYaml: "{{ .appconfig | toJson }}"
+          elementsYaml: "{{ .helm_apps | toJson }}"
   template:
     metadata:
       name: '{{.name}}'

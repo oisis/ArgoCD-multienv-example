@@ -1,3 +1,6 @@
+common_params:
+  - environment: dev
+    domain: "dev.example.com"
 helm_apps:
   - name: "argocd"
     namespace: "argocd"

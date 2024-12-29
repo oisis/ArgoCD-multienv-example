@@ -5,26 +5,6 @@ global:
   logging:
     format: text
     level: info
-redis-ha:
-  enabled: false
-controller:
-  replicas: 1
-repoServer:
-  autoscaling:
-    enabled: true
-    minReplicas: 1
-applicationSet:
-  replicas: 1
-certificate:
-  enabled: true
-server:
-  service:
-    type: ClusterIP
-  ingress:
-    enabled: false
-  autoscaling:
-    enabled: true
-    minReplicas: 1
 configs:
   cm:
     create: true
@@ -34,3 +14,5 @@ configs:
     statusbadge.enabled: true
   params:
     server.insecure: true
+dex:
+  enabled: false

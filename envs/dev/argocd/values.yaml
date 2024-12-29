@@ -2,13 +2,3 @@ global:
   domain: localhost:8080
   additionalLabels:
     environment: dev
-configs:
-  cm:
-    create: true
-    exec.enabled: true
-    server.insecure: true
-    admin.enabled: true
-    statusbadge.enabled: true
-server:
-  service:
-    type: ClusterIP

@@ -16,7 +16,7 @@ spec:
                     repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
                     revision: HEAD
                     files:
-                      - path: envs/dev/apps-config-test.yaml
+                      - path: envs/dev/apps-config.yaml
                 - list:
                     elementsYaml: "{{ .helm_apps | toJson }}"
           - matrix:
@@ -25,7 +25,7 @@ spec:
                     repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
                     revision: HEAD
                     files:
-                      - path: envs/dev/apps-config-test.yaml
+                      - path: envs/dev/apps-config.yaml
                 - list:
                     elementsYaml: "{{ .common_params | toJson }}"
   template:

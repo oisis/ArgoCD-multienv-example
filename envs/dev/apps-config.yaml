@@ -1,6 +1,7 @@
 common_params:
   - environment: dev
     domain: "dev.example.com"
+    project: "dev"
 helm_apps:
   - name: "argocd"
     namespace: "argocd"
@@ -10,19 +11,16 @@ helm_apps:
     targetRevision: "7.7.11"
   - name: "cert-manager"
     namespace: "cert-manager"
-    project: "dev"
     repoUrl: "https://charts.jetstack.io"
     chart: "cert-manager"
     targetRevision: "1.16.2"
   - name: "metrics-server"
     namespace: "metrics-server"
-    project: "dev"
     repoUrl: "https://kubernetes-sigs.github.io/metrics-server/"
     chart: metrics-server
     targetRevision: "3.12.2"
   - name: "nginx"
     namespace: "nginx"
-    project: "dev"
     repoUrl: "https://charts.bitnami.com/bitnami"
     chart: nginx
     targetRevision: "18.2.5"

@@ -24,7 +24,14 @@ ArgoCD multi-environment example
     * [envs/sit/argocd/manifests/k8s-manifests-aoa-appset.yaml](envs/sit/argocd/manifests/k8s-manifests-aoa-appset.yaml) lines: 14, 30, 35
 
 ### 4. Install ArgoCD
-#### 4.1 Install with Helm
+#### 4.1 Create Kubernetes cluster
+```bash
+minikube start --driver=docker \
+  --cpus 4 \
+  --memory 8192 \
+  -p cluster-1
+```
+#### 4.2 Install ArgoCD with Helm
 * Add `ArgoCD` `Helm` repo:
 ```bash
 helm repo add argocd https://argoproj.github.io/argo-helm

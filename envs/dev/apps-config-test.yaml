@@ -8,6 +8,7 @@ helm_apps:
     repoUrl: "https://charts.bitnami.com/bitnami"
     chart: nginx
     targetRevision: "18.2.5"
+    domain: "dev.test.com"
 k8s_manifest_apps:
   - name: "echoserver2"
     namespace: "echoserver2"

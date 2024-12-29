@@ -1,3 +1,6 @@
+common_params:
+  - environment: dev
+    domain: "dev.example.com"
 helm_apps:
   - name: "argocd"
     namespace: "argocd"
@@ -17,6 +20,12 @@ helm_apps:
     repoUrl: "https://kubernetes-sigs.github.io/metrics-server/"
     chart: metrics-server
     targetRevision: "3.12.2"
+  - name: "nginx"
+    namespace: "nginx"
+    project: "dev"
+    repoUrl: "https://charts.bitnami.com/bitnami"
+    chart: nginx
+    targetRevision: "18.2.5"
 k8s_manifest_apps:
   - name: "echoserver"
     namespace: "echoserver"

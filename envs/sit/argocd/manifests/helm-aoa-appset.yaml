@@ -8,15 +8,26 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  - matrix:
-      generators:
-      - git:
-          repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
-          revision: HEAD
-          files:
-            - path: envs/sit/apps-config.yaml
-      - list:
-          elementsYaml: "{{ .helm_apps | toJson }}"
+    - matrix:
+        generators:
+          - matrix:
+              generators:
+                - git:
+                    repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
+                    revision: HEAD
+                    files:
+                      - path: envs/dev/apps-config-test.yaml
+                - list:
+                    elementsYaml: "{{ .helm_apps | toJson }}"
+          - matrix:
+              generators:
+                - git:
+                    repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
+                    revision: HEAD
+                    files:
+                      - path: envs/dev/apps-config-test.yaml
+                - list:
+                    elementsYaml: "{{ .common_params | toJson }}"
   template:
     metadata:
       name: '{{.name}}'

@@ -1,4 +1,4 @@
-appconfig:
+helm_apps:
   - name: "argocd"
     namespace: "argocd"
     project: "default"
@@ -17,3 +17,7 @@ appconfig:
     repoUrl: "https://kubernetes-sigs.github.io/metrics-server/"
     chart: metrics-server
     targetRevision: "3.12.2"
+k8s_manifest_apps:
+  - name: "echoserver"
+    namespace: "echoserver"
+    config_dir: "echoserver"

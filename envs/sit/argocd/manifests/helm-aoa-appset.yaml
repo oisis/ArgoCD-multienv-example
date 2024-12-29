@@ -33,6 +33,7 @@ spec:
       name: '{{.name}}'
       labels:
         custom.label/deployed-by: "helm-aoa"
+        custom.label/environment: "{{.environment}}"
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
@@ -48,7 +49,7 @@ spec:
             ignoreMissingValueFiles: true
             valueFiles:
               - $values/apps/{{.name}}/values.yaml
-              - $values/envs/sit/{{.name}}/values.yaml
+              - $values/envs/{{.environment}}/{{.name}}/values.yaml
         - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           targetRevision: HEAD
           path: apps/{{.name}}/manifests
@@ -56,15 +57,15 @@ spec:
             recurse: true
         - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           targetRevision: HEAD
-          path: envs/sit/{{.name}}/manifests
+          path: envs/{{.environment}}/{{.name}}/manifests
           directory:
             recurse: true
       destination:
-        name: sit
+        name: "{{.environment}}"
         namespace: "{{.namespace}}"
       info:
         - name: 'Applicatation url:'
-          value: "http://{{.name}}.sit.example.com"
+          value: "http://{{.name}}.{{.domain}}"
       syncPolicy:
         automated:
           prune: true

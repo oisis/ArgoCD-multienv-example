@@ -33,7 +33,6 @@ spec:
       name: '{{.name}}'
       labels:
         custom.label/deployed-by: "k8s-manifests-aoa"
-        custom.label/env-domian: "{{.domain}}"
         custom.label/environment: "{{.environment}}"
       finalizers:
         - resources-finalizer.argocd.argoproj.io
@@ -47,11 +46,11 @@ spec:
             recurse: true
         - repoURL: https://github.com/oisis/ArgoCD-multienv-example.git
           targetRevision: HEAD
-          path: envs/dev/{{.config_dir}}
+          path: envs/{{.environment}}/{{.config_dir}}
           directory:
             recurse: true
       destination:
-        name: dev
+        name: "{{.environment}}"
         namespace: "{{.namespace}}"
       info:
         - name: 'Applicatation url:'

@@ -19,6 +19,9 @@ configs:
       g, oisis, role:readonly
   secret:
     extra:
+      # HOWTO: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-secret.yaml
       # To generate password run command: htpasswd -nbBC 10 "" admin123 | tr -d ':\n' | sed 's/$2y/$2a/'
+      # oisis password: password
       accounts.oisis.password: $2a$10$fHU2qAD5fd5qKqMRfHZ4/.Cj2iE3WzK.vmWvR94Fu.41h46u6rbBm
+      # admin password: admin123
       admin.password: $2a$10$0xHOSiR5ZPwcnzDGKSe/1e.A0hBRW7kuokefJa4e17ugOLmK0/aAK

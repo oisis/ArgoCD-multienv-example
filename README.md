@@ -120,3 +120,15 @@ argocd account update-password
 ```bash
 argocd account get --account <ACCOUNT_NAME>
 ```
+
+* Set new ArgoCD user password 
+```bash
+argocd account update-password \
+  --account <name> \
+  --new-password <new-user-password>
+```
+
+* Create auth token
+```bash
+argocd account generate-token --account <username>
+```

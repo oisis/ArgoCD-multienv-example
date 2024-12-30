@@ -4,8 +4,9 @@ global:
     environment: dev
 configs:
   cm:
-    statusbadge.url: "http://localhost:8080/"
+    statusbadge.url: 'http://localhost:8080/'
     accounts.oisis: apiKey, login
+    accounts.oisis.enabled: true
   rbac:
     policy.csv: |
       p, role:readonly, applications, get, */*, allow

@@ -10,6 +10,7 @@ configs:
     accounts.oisis: apiKey, login
     accounts.oisis.enabled: true
   rbac:
+    # RBAC doc: https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/
     policy.csv: |
       g, admin, role:admin
       g, oisis, role:readonly

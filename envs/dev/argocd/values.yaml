@@ -5,12 +5,11 @@ global:
 configs:
   rbac:
     policy.csv: |
-      # Helm chat default values, line: 336 - https://artifacthub.io/packages/helm/argo/argo-cd?modal=values
-      p, role:readonly, applications, get, */*, allow  # Apps read only permission
+      p, role:readonly, applications, get, */*, allow
       p, role:readonly, applicationsets, get, */*, allow
       p, role:readonly, projects, get, */*, allow
-      p, role:readonly, repositories, get, */*, allow  # Repositories read only permission
-      p, role:readonly, clusters, get, */*, allow  # Clusters read only permission
+      p, role:readonly, repositories, get, */*, allow
+      p, role:readonly, clusters, get, */*, allow
       p, role:readonly, exec, create, */*, deny
       p, role:readonly, logs, get, */*, allow
-      g, oisis, role:readonly  # Assign user oisis to role: readonly
+      g, oisis, role:readonly

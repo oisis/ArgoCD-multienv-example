@@ -91,6 +91,7 @@ argocd account update-password
 ```
 
 **HOWTO**:
+##### - Minikube:
 * Destroy cluster created with `minikube`:
 ```bash
 minikube delete -p <CLUSTER_NAME>
@@ -102,4 +103,20 @@ minikube dashboard -p <CLUSTER_NAME>
 * Switch between `minikube` clusters:
 ```bash
 minikube profile <CLUSTER_NAME>
+```
+
+##### - ArgoCD
+* Login to `ArgoCD` server with `argocd`
+```bash
+argocd login localhost:8080
+```
+
+* Update `ArgoCD` admin password:
+```bash
+argocd account update-password
+```
+
+* Get ArgoCD user info:
+```bash
+argocd account get --account <ACCOUNT_NAME>
 ```

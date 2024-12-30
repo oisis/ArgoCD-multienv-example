@@ -11,9 +11,14 @@ configs:
     accounts.oisis.enabled: true
   rbac:
     # RBAC doc: https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/
+    # https://github.com/argoproj/argo-cd/blob/master/assets/builtin-policy.csv
     policy.csv: |
+      p, role:viewer, applications, get, */*, allow
+      p, role:viewer, clusters, get, *, allow
+      p, role:viewer, repositories, get, *, allow
+      p, role:viewer, projects, get, *, allow
       g, admin, role:admin
-      g, oisis, role:readonly
+      g, oisis, role:viewer
     policy.default: role:readonly
   secret:
     extra:

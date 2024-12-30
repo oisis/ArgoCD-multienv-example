@@ -93,11 +93,11 @@ argocd account update-password
 **HOWTO**:
 * Destroy cluster created with `minikube`:
 ```bash
-minikube delete
+minikube delete -p <CLUSTER_NAME>
 ```
 * Get access to Kubernetes dashboard included to `minikube` installation:
 ```bash
-minikube dashboard
+minikube dashboard -p <CLUSTER_NAME>
 ```
 * Switch between `minikube` clusters:
 ```bash

@@ -19,6 +19,7 @@ configs:
       p, role:readonly, exec, create, */*, deny
       p, role:readonly, logs, get, */*, allow
       g, oisis, role:readonly
+    policy.default: role:readonly
   secret:
     extra:
       # HOWTO: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-secret.yaml

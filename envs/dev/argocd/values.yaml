@@ -11,14 +11,6 @@ configs:
     accounts.oisis.enabled: true
   rbac:
     policy.csv: |
-      p, role:readonly, applications, get, */*, allow
-      p, role:readonly, applicationsets, get, */*, allow
-      p, role:readonly, projects, get, */*, allow
-      p, role:readonly, repositories, get, */*, allow
-      p, role:readonly, clusters, get, */*, allow
-      p, role:readonly, exec, create, */*, deny
-      p, role:readonly, logs, get, */*, allow
-      p, role:admin, *, *, */*, allow
       g, admin, role:admin
       g, oisis, role:readonly
     policy.default: role:readonly

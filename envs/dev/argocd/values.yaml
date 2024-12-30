@@ -3,6 +3,9 @@ global:
   additionalLabels:
     environment: dev
 configs:
+  cm:
+    accounts.oisis: apiKey, login
+    accounts.oisis.enabled: "enable"
   rbac:
     policy.csv: |
       p, role:readonly, applications, get, */*, allow

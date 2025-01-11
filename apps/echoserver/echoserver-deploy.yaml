@@ -5,6 +5,7 @@ metadata:
   name: echoserver
   labels:
     app: echoserver
+    app.kubernetes.io/instance: echoserver
 spec:
   replicas: 2
   selector:
